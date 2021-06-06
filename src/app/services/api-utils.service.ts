@@ -1,4 +1,4 @@
-import { HttpService} from './http-service.service';
+import { myHttpService} from './http-service.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apis } from 'src/environments/apis';
@@ -9,10 +9,13 @@ import { Apis } from 'src/environments/apis';
 export class ApiUtilsService {
 
   constructor(
-    private http: HttpService
+    private http: myHttpService
   ) { }
 
-  getRangeOfPokemon(from:number, to:number):Observable<any>{
-    return this.http.send(Apis.getPokemon)
+  getRangeOfPokemon(limit:number, offset:number):Observable<any>{
+    return this.http.send(Apis.getRangeOfPokemons, {limit, offset})
   }
+  getPokemon(name:string){
+    return this.http.send(Apis.getPokemon, {name})
   }
+}

@@ -7,7 +7,7 @@ import { Api } from '../models/apis';
 @Injectable({
   providedIn: 'root',
 })
-export class HttpService {
+export class myHttpService {
   constructor(private httpClient: HttpClient) {}
 
   public send(api: Api, urlParams?: any, body?: any): Observable<any> {

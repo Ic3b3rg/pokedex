@@ -3,9 +3,16 @@ import { Api } from "src/app/models/apis";
 
 export class Apis {
 
+    static getRangeOfPokemons: Api = {
+      apiName: 'GetRangePokemons',
+      name: 'pokemon?limit={limit}&offset={offset}',
+      url: environment.baseURL,
+      method: 'GET'
+    }
+    
     static getPokemon: Api = {
-      apiName: 'APILogout',
-      name: 'pokemon/{id}',
+      apiName: 'getOnePokemon',
+      name: 'pokemon/{name}',
       url: environment.baseURL,
       method: 'GET'
     }
