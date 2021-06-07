@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LoadingDialogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog){ }
+  constructor(){ }
 
   ngOnInit(): void {
   }

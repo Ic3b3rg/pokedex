@@ -4,8 +4,6 @@ import { Store } from '@ngrx/store';
 import { forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { SaveAllPokemons, SaveAllTypes } from './store/pokemon-store/actions';
-import { FormBuilder } from '@angular/forms';
-import { Type } from './models/type';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
 
@@ -39,7 +37,6 @@ export class AppComponent implements OnInit {
         map(res=> res.results.map((type:any)=>({name:type.name, value: type.name})))
       )
     }).subscribe((el: any) => {
-      console.log(el);
       this.store.dispatch(SaveAllPokemons({ pokemonArray: el.pokemonList }));
       this.store.dispatch(SaveAllTypes({ typesArray: el.typesList }));
       dialogRef.close()
