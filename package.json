@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.4",
     "@ngrx/store": "^12.0.0",
     "@ngrx/store-devtools": "^12.0.0",
+    "ngx-smart-modal": "^7.4.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

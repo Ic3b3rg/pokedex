@@ -1,6 +1,10 @@
-<div class="flex flex-col justify-center items-center bg-white rounded p-8 border-blue-600 shadow ">
-    <span>numero</span><span>nome</span>
-    <h1 class="mt-1">image</h1>
-    <p class="mt-1">type</p>
-    <button class="mt-1">dettagli==></button>
-</div>
+<ng-container *ngIf="pokemon">
+    <div class="flex flex-col justify-center items-center h-72 bg-white rounded p-8 border-blue-600 shadow ">
+        <span>{{pokemon.id}}</span><span>{{pokemon.name | titlecase }}</span>
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
+        <span *ngFor="let type of pokemon.types">
+            {{type.type.name}}
+        </span>
+        <button class="mt-1" (click)="goToPokemonDetail(pokemon.id)">dettagli==></button>
+    </div>
+</ng-container>

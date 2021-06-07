@@ -15,7 +15,11 @@ export class ApiUtilsService {
   getRangeOfPokemon(limit:number, offset:number):Observable<any>{
     return this.http.send(Apis.getRangeOfPokemons, {limit, offset})
   }
-  getPokemon(name:string){
+  getPokemon(name:string):Observable<any>{
     return this.http.send(Apis.getPokemon, {name})
   }
+  getAllType():Observable<any>{
+    return this.http.send(Apis.getTypes)
+  }
+
 }

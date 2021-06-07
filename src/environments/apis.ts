@@ -16,4 +16,11 @@ export class Apis {
       url: environment.baseURL,
       method: 'GET'
     }
+
+    static getTypes:Api ={
+      apiName:'getTypes',
+      name: 'type',
+      url: environment.baseURL,
+      method:'GET'
+    }
 }  

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,14 +12,18 @@ import { StoreModule } from '@ngrx/store';
 import { pokemonReducer } from './store/pokemon-store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PokemonCardComponent],
+  declarations: [AppComponent, HomeComponent, PokemonCardComponent, PokemonDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
     StoreModule.forRoot({ pokemonStore: pokemonReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
