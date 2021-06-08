@@ -4,3 +4,51 @@
 @tailwind utilities;
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #7dd8ff;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0093ed;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #0093ed;
+  }
+  ::-webkit-scrollbar-track {
+    background: #d6f5ff;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #c2f0ff;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #b1e9fb;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+*{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.custom-modal{
+  max-width: unset!important;
+  backdrop-filter: opacity(0.5);
+}
+.mat-dialog-container{
+  background-color: rgba(255, 255, 255, 0.8);
+}
