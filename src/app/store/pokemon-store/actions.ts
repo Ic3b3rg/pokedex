@@ -1,5 +1,5 @@
-import { Type } from './../../models/pokemon';
 import { createAction, props } from '@ngrx/store';
+import { Type } from 'src/app/models/type';
 
 export enum PokemonActionType {
   SaveAllPokemons = '[Pokemon Component] Save All Pokemon',

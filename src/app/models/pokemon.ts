@@ -15,7 +15,7 @@ export interface Pokemon {
   species: Species;
   sprites: Sprites;
   stats: Stat[];
-  types: Type[];
+  types: InnerPokemonType[];
   weight: number;
 }
 
@@ -141,7 +141,7 @@ export interface InnerType {
   url: string;
 }
 
-export interface Type {
+export interface InnerPokemonType {
   slot: number;
   type: InnerType;
 }

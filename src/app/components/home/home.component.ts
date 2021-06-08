@@ -1,5 +1,5 @@
 import { Type } from './../../models/type';
-import { Pokemon } from './../../models/pokemon';
+import { Pokemon, InnerPokemonType } from './../../models/pokemon';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -31,23 +31,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    /**
+     * I take all the values ​​I need from the store for the component
+     */
     this.allSubscription.push(
       combineLatest([
         this.store.pipe(select(selectAllPokemon)),
         this.store.pipe(select(selectAllType)),
       ]).subscribe((allPokemons: any[]) => {
-        console.log(allPokemons);
         this.allPokemons = allPokemons[0];
         this.filteredPokemonList = allPokemons[0];
         this.allTypes = [{ name: 'Tutti', value: '' }, ...allPokemons[1]];
       })
     );
-
+    /**
+     * I subscribe to the inputs and launch filtering on each input field
+     */
     this.allSubscription.push(
       this.searchForm.valueChanges
         .pipe(distinctUntilChanged(), debounceTime(500))
         .subscribe((el) => {
-          console.log(el);
           this.filteredPokemonList = this.allPokemons;
           this.filteredPokemonList = this.filteredPokemonList.filter(
             (pokemon) =>
@@ -61,7 +64,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         })
     );
   }
-
+  /** 
+   * Check which Pokémon have the type you are looking for
+  @return boolean
+  */
   hasType(arrTypes: any[], valueToSearch: string): boolean {
     const value = valueToSearch.toLowerCase();
     return arrTypes.find((element: any) => element.type.name === value) !==
@@ -69,8 +75,26 @@ export class HomeComponent implements OnInit, OnDestroy {
       ? true
       : false;
   }
+  /**
+   * Function to sort the types in the select
+   * @param a sort param
+   * @param b sort param
+   * @returns number
+   */
+  compare( a:Type, b:Type ):number {
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
+  }
 
   ngOnDestroy(): void {
+    /**
+     * Unsubscribe in for all subscribers of the component
+     */
     this.allSubscription.map((sub) => sub.unsubscribe());
   }
 }

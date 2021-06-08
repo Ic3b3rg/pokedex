@@ -15,10 +15,11 @@ export class PokemonCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    
   }
-
+  /**
+   * Navigate to the Pokémon detail page
+   * @param id Pokèmon ID 
+   */
   goToPokemonDetail(id:number){
     this.router.navigate([`pokemon-details/${id}`])
   }
