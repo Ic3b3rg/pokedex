@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { SaveAllPokemons, SaveAllTypes } from './store/pokemon-store/actions';
-import { FormBuilder } from '@angular/forms';
-import { Type } from './models/type';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,16 @@ import { Type } from './models/type';
 })
 export class AppComponent implements OnInit {
   title = 'pokedex';
-  constructor(private apiUtils: ApiUtilsService, private store: Store<any>) {}
+  constructor(private apiUtils: ApiUtilsService, private store: Store<any>, private dialog:MatDialog) {}
 
   ngOnInit() {
+    const dialogRef = this.dialog.open(LoadingDialogComponent,{
+      width: '100vw',
+      height: '100%',
+      panelClass: 'custom-modal'
+    })
+
+
     forkJoin({
       pokemonList: this.apiUtils.getRangeOfPokemon(151, 0).pipe(
         switchMap((res: any) => {
@@ -30,9 +37,10 @@ export class AppComponent implements OnInit {
         map(res=> res.results.map((type:any)=>({name:type.name, value: type.name})))
       )
     }).subscribe((el: any) => {
-      console.log(el);
       this.store.dispatch(SaveAllPokemons({ pokemonArray: el.pokemonList }));
       this.store.dispatch(SaveAllTypes({ typesArray: el.typesList }));
+      dialogRef.close()
     });
+
   }
 }

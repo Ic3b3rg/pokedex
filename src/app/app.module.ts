@@ -1,3 +1,4 @@
+import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -14,9 +15,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PokemonCardComponent, PokemonDetailsComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PokemonCardComponent,
+    PokemonDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,8 +36,14 @@ import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-de
       maxAge: 25,
       logOnly: environment.production,
     }),
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   allTypes: Type[];
   allPokemons: Pokemon[];
   filteredPokemonList: Pokemon[];
+  
 
   searchForm: FormGroup = new FormGroup({
     inputText: new FormControl(''),
@@ -43,24 +44,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     this.allSubscription.push(
-      this.searchForm.valueChanges.pipe(distinctUntilChanged(), debounceTime(500)).subscribe((el) => {
-        console.log(el);
-        this.filteredPokemonList = this.allPokemons;
-        this.filteredPokemonList = this.filteredPokemonList.filter((pokemon) =>
-          pokemon.name.toLowerCase().includes(el.inputText.toLowerCase())
-        );
-        if (el.type.length > 0) {
+      this.searchForm.valueChanges
+        .pipe(distinctUntilChanged(), debounceTime(500))
+        .subscribe((el) => {
+          console.log(el);
+          this.filteredPokemonList = this.allPokemons;
           this.filteredPokemonList = this.filteredPokemonList.filter(
-            (pokemon) => this.hasType(pokemon.types, el.type)
+            (pokemon) =>
+              pokemon.name.toLowerCase().includes(el.inputText.toLowerCase())
           );
-        }
-      })
+          if (el.type.length > 0) {
+            this.filteredPokemonList = this.filteredPokemonList.filter(
+              (pokemon) => this.hasType(pokemon.types, el.type)
+            );
+          }
+        })
     );
   }
 
-  hasType(arrTypes: any[], valueToSearch: string):boolean {
+  hasType(arrTypes: any[], valueToSearch: string): boolean {
     const value = valueToSearch.toLowerCase();
-    return arrTypes.find((element: any) => element.type.name === value) !== undefined?true:false
+    return arrTypes.find((element: any) => element.type.name === value) !==
+      undefined
+      ? true
+      : false;
   }
 
   ngOnDestroy(): void {
