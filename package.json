@@ -23,6 +23,8 @@
     "@angular/router": "~11.2.4",
     "@ngrx/store": "^12.0.0",
     "@ngrx/store-devtools": "^12.0.0",
+    "chart.js": "^3.3.2",
+    "ng2-charts": "^3.0.0-rc.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

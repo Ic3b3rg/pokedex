@@ -13,9 +13,10 @@ import { StoreModule } from '@ngrx/store';
 import { pokemonReducer } from './store/pokemon-store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
-import { ReactiveFormsModule } from '@angular/forms';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ChartPokemonStatsComponent } from './components/chart-pokemon-stats/chart-pokemon-stats.component';
+import { SharedModule } from './shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,20 +24,19 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     HomeComponent,
     PokemonCardComponent,
     PokemonDetailsComponent,
+    ChartPokemonStatsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule,
+    SharedModule,
+
     StoreModule.forRoot({ pokemonStore: pokemonReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    MatDialogModule,
   ],
   providers: [
     {
