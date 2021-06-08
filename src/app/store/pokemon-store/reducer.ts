@@ -1,7 +1,8 @@
-import { Type, Pokemon } from './../../models/pokemon';
+import { Pokemon } from './../../models/pokemon';
 
 import { Action, createReducer, on, props } from '@ngrx/store';
 import * as pokemonActions from './actions';
+import { Type } from 'src/app/models/type';
 
 
 interface State{

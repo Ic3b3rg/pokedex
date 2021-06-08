@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,6 +23,9 @@
     "@angular/router": "~11.2.4",
     "@ngrx/store": "^12.0.0",
     "@ngrx/store-devtools": "^12.0.0",
+    "express": "^4.17.1",
+    "chart.js": "^3.3.2",
+    "ng2-charts": "^3.0.0-rc.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
