@@ -1,46 +1,63 @@
 <div
-  class="flex flex-col p-8 w-full h-full space-y-8 items-center justify-center"
+  class="
+    flex flex-col
+    p-
+    w-full
+    h-full
+    space-y-8
+    items-center
+    justify-center
+    bg-white
+    rounded-md
+  "
 >
   <div class="flex flex-col w-10/12 justify-around" *ngIf="pokemon">
-    <div class="flex flex-row justify-start items-center mb-10">
-      <span class="font-normal text-gray-500 text-base mr-3">#{{ pokemon.id }} </span>
-      <span class="font-semibold text-gray-900  text-2xl">{{ pokemon.name | titlecase }}</span>
+    <div class="flex flex-row sm:flex-col justify-start items-start mb-10">
+      <span class="font-normal text-gray-500 text-base mr-3"
+        >#{{ pokemon.id }}
+      </span>
+      <span class="font-semibold text-gray-900 text-2xl">{{
+        pokemon.name | titlecase
+      }}</span>
     </div>
     <div class="flex flex-row justify-between">
+      <!-- stats -->
+      <div class="flex flex-col h-full">
+        <div class=" mb-10">
+          <h4 class="text-lg border-b border-gray-600 font-semibold">
+            Phisics Details:
+          </h4>
+          <ul class="items-center">
+            <li>Weight: {{ pokemon.weight / 10 }} kg</li>
+            <li>Height: {{ pokemon.height / 10 }} mt</li>
+          </ul>
+        </div>
+
+        <div >
+          <h4 class="text-lg border-b border-gray-600 font-semibold">Ability:</h4>
+          <ol class="items-center">
+            <li *ngFor="let ability of pokemon.abilities">
+              {{ ability.ability.name | titlecase }}
+            </li>
+          </ol>
+        </div>
+      </div>
       <!-- image -->
-      <div class="flex justify-center items-center">
+      <div class="flex flex-row justify-center items-center">
         <img
-          width="150"
+          width="250"
           [src]="pokemon.sprites.front_default"
           [alt]="pokemon.name"
         />
+        <img
+          width="250"
+          [src]="pokemon.sprites.back_default"
+          [alt]="pokemon.name"
+        />
       </div>
-      <!-- stats -->
-      <div
-        class="
-          flex flex-col
-          h-full
-          bg-white
-          rounded
-          p-8
-          border-blue-600
-          shadow
-        "
-      >
-        <h4 class="text-lg mb-4">Details</h4>
-        <ul class="items-center">
-          <li>
-            Weight: {{pokemon.weight}} kg
-          </li>
-          <li>
-            Height: {{pokemon.height}} mt
-          </li>
-        </ul>
-        <p >
-        </p>
-      </div>
+
       <!-- chart -->
-      <div class="flex items-center" >
+      <div class="flex items-center border rounded border-gray-600 p-3">
         <chart-pokemon-stats [stats]="pokemon.stats"></chart-pokemon-stats>
       </div>
     </div>
