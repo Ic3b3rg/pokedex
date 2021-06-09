@@ -1,10 +1,10 @@
 <ng-container *ngIf="pokemon">
     <div class="flex flex-col justify-center items-center h-72 bg-white rounded p-8 border-blue-600 shadow ">
-        <span># {{pokemon.id}}</span><span>{{pokemon.name | titlecase }}</span>
+        <span class="font-semibold"># {{pokemon.id}}</span><span class="font-semibold">{{pokemon.name | titlecase }}</span>
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
         <span *ngFor="let type of pokemon.types">
             {{type.type.name|titlecase}}
         </span>
-        <button class="mt-2 p-2 rounded bg-white border-1 border-blue-700 hover:bg-blue-700 hover:text-white" (click)="goToPokemonDetail(pokemon.id)">Dettagli</button>
+        <button class="mt-2 p-2 rounded border-2 bg-white border-1 border-blue-700 hover:bg-blue-700 hover:text-white" (click)="goToPokemonDetail(pokemon.id)">Dettagli</button>
     </div>
 </ng-container>
